@@ -1,5 +1,6 @@
 package com.wizardrrr.androidmaster.imccalculator
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -30,6 +31,10 @@ class ImcCalculatorActivity : AppCompatActivity() {
     private lateinit var btnPlusWeight: FloatingActionButton
     private lateinit var tvWeight: TextView
     private lateinit var btnCalculate: Button
+
+    companion object {
+        const val IMC_KEY = "IMC_RESULT"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,21 +84,28 @@ class ImcCalculatorActivity : AppCompatActivity() {
             currentWeight += 1
             setWeight()
         }
-        btnCalculate.setOnClickListener{
-            calculateIMC()
+        btnCalculate.setOnClickListener {
+            val result = calculateIMC()
+            navigateToResult(result)
         }
     }
 
-    private fun calculateIMC() {
+    private fun navigateToResult(result: Double) {
+        val intent = Intent(this, ResultIMCActivity::class.java)
+        intent.putExtra(IMC_KEY, result)
+        startActivity(intent)
+    }
+
+    private fun calculateIMC(): Double {
         val decimalFormat = DecimalFormat("#.##")
         val imc = currentWeight / (currentHeight.toDouble() / 100 * currentHeight.toDouble() / 100)
-        val result = decimalFormat.format(imc).toDouble()
-        Log.i("wizard", "el imc es $result")
+        return decimalFormat.format(imc).toDouble()
     }
 
     private fun setWeight() {
         tvWeight.text = currentWeight.toString()
     }
+
     private fun setGenderColor() {
         viewMale.setCardBackgroundColor(getBackgroundColor(isMaleSelected))
         viewFemale.setCardBackgroundColor(getBackgroundColor(isFemaleSelected))
