@@ -6,23 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".firstApp.FirstAppActivity">
-    <View
-        android:id="@+id/viewPurple"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:background="@color/purple_200"
-        app:layout_constraintStart_toEndOf="@id/viewBlack"
-        app:layout_constraintBottom_toBottomOf="@id/viewBlack"
-        />
-    <View
-        android:id="@+id/viewBlack"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:background="@color/cardview_dark_background"
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Escribe tu nombre"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pulsa aqui"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
